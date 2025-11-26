@@ -18,9 +18,6 @@
         function getLink(){
             return "https://www.pokemon.com/us/pokedex/" + getRandomInt(999);
         }
-        function callme() {
-            window.open(getLink())
-        }
         function tool() {
             window.open(getLink(), "_blank", 'height=1000,width=150')
         }
@@ -28,8 +25,7 @@
     </script>
 
 <body>
-    <input type="button" onclick="callme()" />
-    <input type="button" onclick="tool()" />
+    <input type="button" onclick="tool()" value="Get Pokemon"/>
 </body>
 
 </html>
