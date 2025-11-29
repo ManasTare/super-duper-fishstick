@@ -1,6 +1,41 @@
 <!DOCTYPE html>
+<<<<<<< HEAD
 <html>
 <body>
+=======
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .class1 {
+            color: red;
+        }
+    </style>
+    <script>
+        function getRandomInt(max) {
+            return Math.floor(Math.random() * max);
+        }
+
+        function getLink(){
+            return "https://www.pokemon.com/us/pokedex/" + getRandomInt(999);
+        }
+        function callme() {
+            window.open(getLink())
+        }
+        function tool() {
+            window.open(getLink(), "_blank", 'height=1000,width=150')
+        }
+
+    </script>
+
+<body>
+    <input type="button" onclick="callme()" />
+    <input type="button" onclick="tool()" />
+</body>
+>>>>>>> parent of 77ac847 (Update index.html)
 
 <h2 id="pname"></h2>
 
