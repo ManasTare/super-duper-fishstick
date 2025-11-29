@@ -1,31 +1,51 @@
 <!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <style>
-        .class1 {
-            color: red;
-        }
-    </style>
-    <script>
-        function getRandomInt(max) {
-            return Math.floor(Math.random() * max);
-        }
-
-        function getLink(){
-            return "https://www.pokemon.com/us/pokedex/" + getRandomInt(999);
-        }
-        function tool() {
-            window.open(getLink(), "_blank", 'height=1000,width=150')
-        }
-
-    </script>
-
+<html>
 <body>
-    <input type="button" onclick="tool()" value="Get Pokemon"/>
-</body>
 
+<h2 id="pname"></h2>
+
+<img id="pokeimg" width="200">
+
+<h3>Base Stats</h3>
+<div id="stats"></div>
+
+<script>
+async function loadPoke() {
+
+    // Generate random number (1 to 1000)
+    function getRandomLink() {
+        let id = Math.floor(Math.random() * 1000) + 1;
+        return `https://pokeapi.co/api/v2/pokemon/${id}`;
+    }
+
+    // Fetch random Pokémon
+    let response = await fetch(getRandomLink());
+    let obj = await response.json();
+
+    // Store in localStorage
+    localStorage.setItem("pokemon", JSON.stringify(obj));
+
+    // Get stored data
+    let stored = JSON.parse(localStorage.getItem("pokemon"));
+
+    // Show name
+    document.getElementById("pname").innerHTML = stored.name.toUpperCase();
+
+    // Show image
+    document.getElementById("pokeimg").src =
+        stored.sprites.other["official-artwork"].front_default;
+
+    // Show Stats
+    let out = "";
+    stored.stats.forEach(stat => {
+        out += `${stat.stat.name.toUpperCase()}: ${stat.base_stat}<br>`;
+    });
+
+    document.getElementById("stats").innerHTML = out;
+}
+
+loadPoke();
+</script>
+
+</body>
 </html>
